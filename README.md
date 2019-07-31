@@ -16,12 +16,13 @@ gem "lita-onewheel-loggly"
 
 Configuration
 -------------
-
+```
 Lita.configure do |config|
-  config.handlers.onewheel_loggly.api_key = '016450909327860943906:3a3e35xbkzu'
-  config.handlers.onewheel_loggly.base_uri = 'AIzaSyAlTbxqcZOlb3M-QXR4PCYpS2U1rfgwSlU'
+  config.handlers.onewheel_loggly.api_key = 'insert key here'
+  config.handlers.onewheel_loggly.base_uri = 'eh'
   config.handlers.onewheel_loggly.query = 'medium'
 end
+```
 
 Usage
 -----
