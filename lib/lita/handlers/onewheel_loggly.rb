@@ -24,13 +24,15 @@ module Lita
 
         from_when = nil
 
-        unless response.matches[0][1].empty?
-          from_when = get_from_when_time(response.matches[0][1])
-          if from_when.nil?
-            response.reply "#{response.matches[0][1]} was unable to be parsed- try 24h time."
-            return
+        if response.matches.count > 1
+          unless response.matches[0][1].empty?
+            from_when = get_from_when_time(response.matches[0][1])
+            if from_when.nil?
+              response.reply "#{response.matches[0][1]} was unable to be parsed- try 24h time."
+              return
+            end
+            Lita.logger.info "Chronic found from_when time of #{from_when}"
           end
-          Lita.logger.info "Chronic found from_when time of #{from_when}"
         end
 
         time_period = get_time_period(response.matches[0][0])
@@ -142,7 +144,7 @@ module Lita
       end
 
       def call_loggly(uri)
-        auth_header = {'Authorization': "bearer #{config.api_key}"}
+        auth_header = {Authorization: "bearer #{config.api_key}"}
         Lita.logger.debug uri
         returned_value = nil
         retries = 0
